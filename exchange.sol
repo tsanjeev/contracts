@@ -34,3 +34,36 @@ contract Exchange {
     }
 
 }
+
+/*
+
+[
+  {
+    constant: true,
+    inputs: [{ name: "", type: "address" }],
+    name: "balanceOf",
+    outputs: [{ name: "", type: "uint256" }],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: false,
+    inputs: [{ name: "tokens", type: "uint256" }],
+    name: "deposit",
+    outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    constant: false,
+    inputs: [],
+    name: "exchange",
+    outputs: [],
+    payable: true,
+    stateMutability: "payable",
+    type: "function"
+  }
+]
+*/
