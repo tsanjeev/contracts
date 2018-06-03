@@ -1,6 +1,6 @@
 pragma solidity ^0.4.17;
 //contract address
-//0xd00504bb029b044e0488fa2b9749043960422b24
+//0xe8d98f8c9c2b0ab5e9d0aca26d914a7fc002a4de
 
 contract BurgerToken {
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
@@ -13,14 +13,11 @@ contract Exchange {
     uint256 exchangeRate = 100;
     uint256 decimals = 1000000000000000000;
     mapping ( address => uint256 ) public balanceOf;
-    address tokenAddress = 0x170969B6D0C7005872C4EaD9805dAbd10f4E8641;
-    address addressToSendEther = 0x7303efc3b94bb9d7d37511303a5108601d9a82ff;
-
+    address tokenAddress = 0x5c87e1c456dcedfab139df81a7ca331bb0c14dda;
 
     function exchange() public payable {
         require(msg.value > 1 ether);
         uint256 toEther = msg.value/(1 ether);
-        addressToSendEther.transfer(this.balance);
         uint256 etherToBurgerToken = toEther * exchangeRate *  decimals;
         BurgerToken(tokenAddress).transfer(msg.sender, etherToBurgerToken);
         balanceOf[this] -= etherToBurgerToken;
@@ -31,6 +28,10 @@ contract Exchange {
 
         balanceOf[this]+= tokens;
         BurgerToken(tokenAddress).transferFrom(msg.sender, address(this), tokens);
+    }
+
+    function withdrawEther(address _to) public {
+        _to.transfer(this.balance);
     }
 
 }
